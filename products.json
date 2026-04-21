@@ -1,0 +1,902 @@
+[
+  {
+    "name": "Apple iPhone 15 Pro",
+    "description": "Latest flagship smartphone with A17 Pro chip, 256GB storage",
+    "price": 129900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400",
+    "availableQty": 5
+  },
+  {
+    "name": "Samsung Galaxy S24 Ultra",
+    "description": "Flagship Android phone with 200MP camera and S Pen",
+    "price": 119900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "MacBook Pro M3",
+    "description": "14-inch laptop with M3 chip, 16GB RAM, 512GB SSD",
+    "price": 169900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+    "availableQty": 3
+  },
+  {
+    "name": "Dell XPS 15",
+    "description": "Premium Windows laptop with Intel i7, 32GB RAM",
+    "price": 145900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400",
+    "availableQty": 6
+  },
+  {
+    "name": "Sony WH-1000XM5",
+    "description": "Premium noise-cancelling wireless headphones",
+    "price": 29990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "AirPods Pro 2",
+    "description": "Apple wireless earbuds with active noise cancellation",
+    "price": 24900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "iPad Air M2",
+    "description": "10.9-inch tablet with M2 chip and Apple Pencil support",
+    "price": 59900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400",
+    "availableQty": 10
+  },
+  {
+    "name": "Apple Watch Series 9",
+    "description": "Advanced smartwatch with health monitoring features",
+    "price": 41900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+    "availableQty": 12
+  },
+  {
+    "name": "Canon EOS R6",
+    "description": "Full-frame mirrorless camera with 20MP sensor",
+    "price": 209900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400",
+    "availableQty": 4
+  },
+  {
+    "name": "Sony PlayStation 5",
+    "description": "Next-gen gaming console with 825GB SSD",
+    "price": 49990,
+    "category": "Electronics",
+    "listingType": "BUY",
+    "imageUrl": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400",
+    "availableQty": 0
+  },
+  {
+    "name": "Nintendo Switch OLED",
+    "description": "Hybrid gaming console with vibrant OLED screen",
+    "price": 34990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400",
+    "availableQty": 7
+  },
+  {
+    "name": "DJI Mini 3 Pro Drone",
+    "description": "Compact drone with 4K camera and 34min flight time",
+    "price": 75900,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400",
+    "availableQty": 5
+  },
+  {
+    "name": "GoPro Hero 12",
+    "description": "Action camera with 5.3K video and HyperSmooth 6.0",
+    "price": 44990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1519669011783-4eaa95fa1b7d?w=400",
+    "availableQty": 9
+  },
+  {
+    "name": "Samsung 55-inch QLED TV",
+    "description": "4K Smart TV with Quantum Dot technology",
+    "price": 89990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400",
+    "availableQty": 6
+  },
+  {
+    "name": "Bose SoundLink Revolve+",
+    "description": "Portable Bluetooth speaker with 360° sound",
+    "price": 21990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400",
+    "availableQty": 11
+  },
+  {
+    "name": "Amazon Echo Dot 5th Gen",
+    "description": "Smart speaker with Alexa voice assistant",
+    "price": 4499,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1543512214-318c7553f230?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "Logitech MX Master 3S",
+    "description": "Premium wireless mouse for productivity",
+    "price": 8990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400",
+    "availableQty": 18
+  },
+  {
+    "name": "Razer BlackWidow V3",
+    "description": "Mechanical gaming keyboard with RGB lighting",
+    "price": 11990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400",
+    "availableQty": 14
+  },
+  {
+    "name": "Anker PowerCore 20000",
+    "description": "High-capacity portable power bank",
+    "price": 3999,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400",
+    "availableQty": 30
+  },
+  {
+    "name": "Ring Video Doorbell Pro",
+    "description": "Smart doorbell with 1080p HD video",
+    "price": 16990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1558002038-1055907df827?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "Fitbit Charge 6",
+    "description": "Advanced fitness tracker with heart rate monitoring",
+    "price": 12990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400",
+    "availableQty": 16
+  },
+  {
+    "name": "Kindle Paperwhite",
+    "description": "Waterproof e-reader with 6.8-inch display",
+    "price": 13999,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1592422746485-d8d077b8f83c?w=400",
+    "availableQty": 12
+  },
+  {
+    "name": "Wacom Intuos Pro",
+    "description": "Professional graphics tablet for digital artists",
+    "price": 32990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400",
+    "availableQty": 7
+  },
+  {
+    "name": "Philips Hue Starter Kit",
+    "description": "Smart LED bulbs with color changing capability",
+    "price": 8990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1563089145-599997674d42?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "Western Digital 2TB SSD",
+    "description": "External solid-state drive for fast storage",
+    "price": 15990,
+    "category": "Electronics",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "Levi's 501 Original Jeans",
+    "description": "Classic straight-fit denim jeans",
+    "price": 4990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "Nike Air Force 1",
+    "description": "Iconic white sneakers with cushioned sole",
+    "price": 7990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400",
+    "availableQty": 18
+  },
+  {
+    "name": "Adidas Ultraboost 23",
+    "description": "Premium running shoes with Boost cushioning",
+    "price": 15990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "North Face Puffer Jacket",
+    "description": "Warm winter jacket with down insulation",
+    "price": 18990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400",
+    "availableQty": 10
+  },
+  {
+    "name": "Uniqlo Heattech Turtleneck",
+    "description": "Thermal base layer for cold weather",
+    "price": 1990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400",
+    "availableQty": 30
+  },
+  {
+    "name": "Champion Hoodie",
+    "description": "Classic pullover hoodie with logo",
+    "price": 3490,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400",
+    "availableQty": 22
+  },
+  {
+    "name": "Ray-Ban Aviator Sunglasses",
+    "description": "Iconic metal-frame sunglasses",
+    "price": 12990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400",
+    "availableQty": 14
+  },
+  {
+    "name": "Timex Weekender Watch",
+    "description": "Classic analog watch with leather strap",
+    "price": 4490,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400",
+    "availableQty": 16
+  },
+  {
+    "name": "Columbia Hiking Boots",
+    "description": "Waterproof trail boots with ankle support",
+    "price": 10990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?w=400",
+    "availableQty": 12
+  },
+  {
+    "name": "Patagonia Fleece Jacket",
+    "description": "Lightweight fleece for outdoor activities",
+    "price": 8990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400",
+    "availableQty": 13
+  },
+  {
+    "name": "Vans Old Skool",
+    "description": "Classic canvas sneakers with side stripe",
+    "price": 5490,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "Tommy Hilfiger Polo Shirt",
+    "description": "Cotton polo with embroidered logo",
+    "price": 3990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1626497764746-6dc36546b388?w=400",
+    "availableQty": 19
+  },
+  {
+    "name": "H&M Slim Fit Chinos",
+    "description": "Versatile dress pants in multiple colors",
+    "price": 2490,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "Zara Leather Jacket",
+    "description": "Faux leather biker jacket with zippers",
+    "price": 7990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "Gap Basic T-Shirt Pack",
+    "description": "5-pack of cotton crew neck tees",
+    "price": 1990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400",
+    "availableQty": 35
+  },
+  {
+    "name": "Under Armour Compression Shirt",
+    "description": "Athletic base layer for training",
+    "price": 2990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400",
+    "availableQty": 17
+  },
+  {
+    "name": "Lululemon Align Leggings",
+    "description": "High-waist yoga pants with buttery feel",
+    "price": 9800,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400",
+    "availableQty": 14
+  },
+  {
+    "name": "Carhartt Beanie",
+    "description": "Warm knit hat for winter",
+    "price": 1490,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=400",
+    "availableQty": 28
+  },
+  {
+    "name": "Fossil Leather Belt",
+    "description": "Classic brown leather belt with buckle",
+    "price": 2990,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1624222247344-550fb60583f2?w=400",
+    "availableQty": 21
+  },
+  {
+    "name": "Puma Track Pants",
+    "description": "Sporty joggers with side stripes",
+    "price": 2790,
+    "category": "Clothing",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400",
+    "availableQty": 23
+  },
+  {
+    "name": "Atomic Habits by James Clear",
+    "description": "Bestselling book on building good habits",
+    "price": 499,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400",
+    "availableQty": 40
+  },
+  {
+    "name": "The Psychology of Money",
+    "description": "Morgan Housel's guide to wealth and happiness",
+    "price": 399,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
+    "availableQty": 35
+  },
+  {
+    "name": "Sapiens by Yuval Noah Harari",
+    "description": "Brief history of humankind",
+    "price": 599,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400",
+    "availableQty": 32
+  },
+  {
+    "name": "Think and Grow Rich",
+    "description": "Napoleon Hill's classic on success principles",
+    "price": 299,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
+    "availableQty": 45
+  },
+  {
+    "name": "The Alchemist by Paulo Coelho",
+    "description": "Inspirational novel about following your dreams",
+    "price": 350,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400",
+    "availableQty": 38
+  },
+  {
+    "name": "1984 by George Orwell",
+    "description": "Dystopian novel about totalitarianism",
+    "price": 299,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400",
+    "availableQty": 41
+  },
+  {
+    "name": "Harry Potter Complete Set",
+    "description": "All 7 books in the beloved series",
+    "price": 3499,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "Rich Dad Poor Dad",
+    "description": "Robert Kiyosaki's financial education classic",
+    "price": 399,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=400",
+    "availableQty": 36
+  },
+  {
+    "name": "The 48 Laws of Power",
+    "description": "Robert Greene's guide to strategy and power",
+    "price": 699,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400",
+    "availableQty": 28
+  },
+  {
+    "name": "Deep Work by Cal Newport",
+    "description": "Rules for focused success in a distracted world",
+    "price": 450,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
+    "availableQty": 31
+  },
+  {
+    "name": "The Subtle Art of Not Giving a F*ck",
+    "description": "Mark Manson's counterintuitive approach to living",
+    "price": 399,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400",
+    "availableQty": 33
+  },
+  {
+    "name": "Educated by Tara Westover",
+    "description": "Memoir about education and family",
+    "price": 499,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400",
+    "availableQty": 29
+  },
+  {
+    "name": "The Power of Now",
+    "description": "Eckhart Tolle's guide to spiritual enlightenment",
+    "price": 399,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400",
+    "availableQty": 34
+  },
+  {
+    "name": "Can't Hurt Me by David Goggins",
+    "description": "Master your mind and defy the odds",
+    "price": 599,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
+    "availableQty": 27
+  },
+  {
+    "name": "The 7 Habits of Highly Effective People",
+    "description": "Stephen Covey's timeless success principles",
+    "price": 499,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400",
+    "availableQty": 30
+  },
+  {
+    "name": "Man's Search for Meaning",
+    "description": "Viktor Frankl's profound Holocaust memoir",
+    "price": 299,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400",
+    "availableQty": 37
+  },
+  {
+    "name": "The Lean Startup",
+    "description": "Eric Ries' guide to building successful companies",
+    "price": 549,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400",
+    "availableQty": 26
+  },
+  {
+    "name": "Thinking, Fast and Slow",
+    "description": "Daniel Kahneman on decision-making psychology",
+    "price": 699,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400",
+    "availableQty": 24
+  },
+  {
+    "name": "The Four Agreements",
+    "description": "Don Miguel Ruiz's practical guide to personal freedom",
+    "price": 349,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400",
+    "availableQty": 39
+  },
+  {
+    "name": "Shoe Dog by Phil Knight",
+    "description": "Nike founder's memoir about building an empire",
+    "price": 499,
+    "category": "Books",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "IKEA POÄNG Armchair",
+    "description": "Comfortable bentwood armchair with cushion",
+    "price": 8990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400",
+    "availableQty": 12
+  },
+  {
+    "name": "Herman Miller Aeron Chair",
+    "description": "Ergonomic office chair with lumbar support",
+    "price": 129900,
+    "category": "Furniture",
+    "listingType": "BUY",
+    "imageUrl": "https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400",
+    "availableQty": 0
+  },
+  {
+    "name": "West Elm Mid-Century Sofa",
+    "description": "Modern 3-seater sofa with tufted cushions",
+    "price": 89990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400",
+    "availableQty": 5
+  },
+  {
+    "name": "Wayfair Adjustable Standing Desk",
+    "description": "Electric height-adjustable desk 48x30 inches",
+    "price": 34990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "CB2 Acacia Wood Dining Table",
+    "description": "6-seater solid wood table with natural finish",
+    "price": 59990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1617806118233-18e1de247200?w=400",
+    "availableQty": 6
+  },
+  {
+    "name": "Crate & Barrel Bookshelf",
+    "description": "5-tier wooden bookshelf with open design",
+    "price": 24990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=400",
+    "availableQty": 9
+  },
+  {
+    "name": "IKEA MALM Bed Frame",
+    "description": "Queen-size platform bed with storage drawers",
+    "price": 34990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400",
+    "availableQty": 7
+  },
+  {
+    "name": "Urban Outfitters Rattan Chair",
+    "description": "Bohemian accent chair with cushion",
+    "price": 18990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400",
+    "availableQty": 11
+  },
+  {
+    "name": "Target 6-Drawer Dresser",
+    "description": "Spacious storage dresser in white finish",
+    "price": 29990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "Article Sven Sofa",
+    "description": "Modern leather sofa with mid-century design",
+    "price": 99990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400",
+    "availableQty": 4
+  },
+  {
+    "name": "Floyd Modular Shelving",
+    "description": "Customizable wall-mounted shelf system",
+    "price": 44990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=400",
+    "availableQty": 10
+  },
+  {
+    "name": "AllModern TV Stand",
+    "description": "60-inch media console with cable management",
+    "price": 22990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400",
+    "availableQty": 9
+  },
+  {
+    "name": "Pottery Barn Nightstand",
+    "description": "2-drawer bedside table in espresso finish",
+    "price": 16990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400",
+    "availableQty": 13
+  },
+  {
+    "name": "IKEA KALLAX Storage Unit",
+    "description": "4x4 cube organizer with 16 compartments",
+    "price": 12990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=400",
+    "availableQty": 14
+  },
+  {
+    "name": "World Market Papasan Chair",
+    "description": "Round bowl chair with plush cushion",
+    "price": 14990,
+    "category": "Furniture",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400",
+    "availableQty": 10
+  },
+  {
+    "name": "Yonex Badminton Racket",
+    "description": "Professional-grade carbon fiber racket",
+    "price": 8990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "Wilson Evolution Basketball",
+    "description": "Official size indoor basketball",
+    "price": 6490,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400",
+    "availableQty": 18
+  },
+  {
+    "name": "Adidas Predator Soccer Cleats",
+    "description": "Professional football boots with studs",
+    "price": 12990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=400",
+    "availableQty": 12
+  },
+  {
+    "name": "Spalding NBA Hoop",
+    "description": "Adjustable height basketball hoop for backyard",
+    "price": 24990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1519766304817-4f37bda74a26?w=400",
+    "availableQty": 6
+  },
+  {
+    "name": "Decathlon Yoga Mat",
+    "description": "6mm thick non-slip exercise mat",
+    "price": 1990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "Reebok Adjustable Dumbbells",
+    "description": "15kg pair of weights with selector dial",
+    "price": 14990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400",
+    "availableQty": 10
+  },
+  {
+    "name": "TRX Suspension Trainer",
+    "description": "Bodyweight training system with straps",
+    "price": 11990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400",
+    "availableQty": 14
+  },
+  {
+    "name": "Garmin Forerunner 265",
+    "description": "GPS running watch with heart rate monitor",
+    "price": 34990,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400",
+    "availableQty": 8
+  },
+  {
+    "name": "Speedo Competition Goggles",
+    "description": "Anti-fog swim goggles for racing",
+    "price": 2490,
+    "category": "Sports",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "Bowflex Home Gym",
+    "description": "Complete strength training system",
+    "price": 149990,
+    "category": "Sports",
+    "listingType": "SHARE",
+    "imageUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400",
+    "availableQty": 2
+  },
+  {
+    "name": "Homekeeper Service",
+    "description": "Part-time home cleaning service per hour",
+    "price": 500,
+    "category": "Service",
+    "listingType": "SHARE",
+    "imageUrl": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400",
+    "availableQty": 100
+  },
+  {
+    "name": "Guitar Lessons",
+    "description": "Private 1-hour guitar tutoring session",
+    "price": 800,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400",
+    "availableQty": 50
+  },
+  {
+    "name": "Web Development Course",
+    "description": "Complete full-stack development bootcamp",
+    "price": 29990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "Personal Training Package",
+    "description": "10 sessions with certified fitness trainer",
+    "price": 15990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400",
+    "availableQty": 15
+  },
+  {
+    "name": "Photography Session",
+    "description": "2-hour portrait photoshoot with editing",
+    "price": 8990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=400",
+    "availableQty": 25
+  },
+  {
+    "name": "Tutoring - Mathematics",
+    "description": "One-on-one math tutoring for students",
+    "price": 1000,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400",
+    "availableQty": 40
+  },
+  {
+    "name": "Car Detailing Service",
+    "description": "Interior and exterior deep cleaning",
+    "price": 3990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=400",
+    "availableQty": 30
+  },
+  {
+    "name": "Yoga Classes",
+    "description": "Monthly unlimited yoga studio access",
+    "price": 4990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400",
+    "availableQty": 35
+  },
+  {
+    "name": "Logo Design Package",
+    "description": "Professional brand identity design",
+    "price": 12990,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400",
+    "availableQty": 20
+  },
+  {
+    "name": "Lawn Mowing Service",
+    "description": "Weekly lawn maintenance for residential",
+    "price": 2000,
+    "category": "Service",
+    "listingType": "SELL",
+    "imageUrl": "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=400",
+    "availableQty": 45
+  }
+]

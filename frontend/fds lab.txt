@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3> this parent component</h3>
+<h3> this child component</h3>
+</body>
+</html>
