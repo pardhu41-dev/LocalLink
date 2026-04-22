@@ -11,7 +11,6 @@ import {
   CardContent,
   CardActions,
   Fade,
-  Chip
 } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -51,8 +50,9 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
   };
 
   useEffect(() => {
-    fetchProductData();
-  }, [id]);
+  fetchProductData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleEdit = () => setEditMode(true);
