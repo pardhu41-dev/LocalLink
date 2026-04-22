@@ -1,5 +1,7 @@
 // API Configuration
-export const API_BASE_URL = 'http://localhost:5001';
+export const API_BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5001' 
+  : 'https://locallink-dhzn.onrender.com';
 
 // Helper function for API endpoints
 export const API = {
