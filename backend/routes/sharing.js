@@ -12,11 +12,11 @@ router.post('/:id/request-borrow', authMiddleware, async (req, res) => {
     if (product.listingType !== "SHARE")
       return res.status(400).json({ msg: "Not a shared item" });
   
-    if (product.borrowRequesters && product.borrowRequesters.includes(req.user.userId))
+    if (product.borrowRequesters && product.borrowRequesters.includes(req.user.id))
       return res.status(400).json({ msg: "Already requested" });
   
     product.borrowRequesters = product.borrowRequesters || [];
-    product.borrowRequesters.push(req.user.userId);
+    product.borrowRequesters.push(req.user.id);
     await product.save();
   
     res.json({ msg: "Request to borrow sent" });
@@ -30,7 +30,7 @@ router.post('/:id/approve-borrow/:userId', authMiddleware, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ msg: "Product not found" });
-    if (product.seller.toString() !== req.user.userId)
+    if (product.seller.toString() !== req.user.id)
       return res.status(401).json({ msg: "Unauthorized" });
   
     const { userId } = req.params;

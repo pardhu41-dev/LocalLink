@@ -26,11 +26,10 @@ const barterSchema = new mongoose.Schema({
     enum: ['PENDING', 'ACCEPTED', 'REJECTED', 'COMPLETED'], 
     default: 'PENDING' 
   },
-  message: String,
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
-  }
-});
+  message: String
+}, { timestamps: true }); // Use Mongoose timestamps — provides both createdAt and updatedAt
+
+barterSchema.index({ owner: 1, status: 1 });
+barterSchema.index({ requester: 1 });
 
 module.exports = mongoose.model('Barter', barterSchema);

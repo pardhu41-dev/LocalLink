@@ -1,15 +1,13 @@
 import { API } from './config';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import {
-  ThemeProvider, createTheme, CssBaseline, AppBar, Toolbar, Tabs, Tab, 
-  Box, Button, IconButton, Badge, Typography, Dialog, DialogTitle, DialogContent
+  ThemeProvider, createTheme, CssBaseline,
+  Dialog, DialogTitle, DialogContent
 } from '@mui/material';
-import { Brightness4, Brightness7 } from '@mui/icons-material';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import SplashScreen from './components/SplashScreen';
-import Logo from './components/Logo';
 import AuthForms from './AuthForms';
 import AddProductForm from './AddProductForm';
 import ProductList from './ProductList';
@@ -18,181 +16,22 @@ import Profile from './Profile';
 import Orders from './Orders';
 import Cart from './Cart';
 import Wishlist from './Wishlist';
-import HealthCheck from './components/HealthCheck';
+import VerifyEmail from './pages/VerifyEmail';
+import RegisterPage from './pages/RegisterPage';
+import AiAssistant from './components/AiAssistant';
+import Navbar from './components/Navbar';
 
-function LinkTab(props) {
-  return (
-    <Tab
-      component={Link}
-      {...props}
-      sx={{ 
-        color: 'white', 
-        fontWeight: 600,
-        fontSize: '0.95rem',
-        '&:hover': { 
-          opacity: 0.9,
-          backgroundColor: 'rgba(255, 255, 255, 0.1)'
-        },
-        '&.Mui-selected': { 
-          color: '#AEEA00',
-          fontWeight: 700
-        }
-      }}
-    />
-  );
-}
-
-function NavTabs({ token, setToken, darkMode, toggleDarkMode, onLoginClick }) {
-  let location = useLocation();
-  const navigate = useNavigate();
-  const [wishlistCount, setWishlistCount] = useState(0);
-  
-  useEffect(() => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    setWishlistCount(wishlist.length);
-  }, [location]);
-
-  const currentTab = () => {
-    if (location.pathname.startsWith('/profile')) return 1;
-    if (location.pathname.startsWith('/orders')) return 2;
-    if (location.pathname.startsWith('/wishlist')) return 3;
-    if (location.pathname.startsWith('/add-product')) return 4;
-    if (location.pathname.startsWith('/cart')) return 5;
-    return 0;
-  };
-  const [value, setValue] = React.useState(currentTab());
-  const handleChange = (event, newValue) => setValue(newValue);
-
-  const handleLogout = () => {
-    setToken("");
-    localStorage.removeItem('jwt');
-    navigate("/");
-  };
-  
-  return (
-    <AppBar 
-      position="static"
-      sx={{
-        background: 'linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%)',
-        boxShadow: '0 4px 12px rgba(46, 125, 50, 0.3)'
-      }}
-    >
-      <Toolbar sx={{ minHeight: 70 }}>
-        {/* Logo and Title */}
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 1.5, 
-            mr: 4,
-            cursor: 'pointer'
-          }}
-          onClick={() => navigate('/')}
-        >
-          <Logo size={45} />
-          <Typography 
-            variant="h5" 
-            sx={{ 
-              fontWeight: 700, 
-              letterSpacing: 0.5,
-              display: { xs: 'none', sm: 'block' },
-              color: '#AEEA00'
-            }}
-          >
-            LocalMarket
-          </Typography>
-        </Box>
-
-        <Tabs 
-          value={value} 
-          onChange={handleChange} 
-          TabIndicatorProps={{
-            style: { backgroundColor: '#AEEA00', height: 3 }
-          }}
-          textColor="inherit"
-          sx={{ flexGrow: 1 }}
-        >
-          <LinkTab label="Home" to="/" />
-          {token && <LinkTab label="Profile" to="/profile" />}
-          {token && <LinkTab label="Orders" to="/orders" />}
-          {token && (
-            <LinkTab 
-              label={
-                <Badge badgeContent={wishlistCount} color="error">
-                  Wishlist
-                </Badge>
-              } 
-              to="/wishlist" 
-            />
-          )}
-          {token && <LinkTab label="Add Product" to="/add-product" />}
-          {token && <LinkTab label="Cart" to="/cart" />}
-        </Tabs>
-        
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-          <IconButton 
-            color="inherit" 
-            onClick={toggleDarkMode} 
-            sx={{ 
-              mr: 1,
-              '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' }
-            }}
-          >
-            {darkMode ? <Brightness7 /> : <Brightness4 />}
-          </IconButton>
-          
-          {!token ? (
-            <Button 
-              variant="contained"
-              onClick={onLoginClick}
-              sx={{ 
-                textTransform: 'none', 
-                fontWeight: 600,
-                backgroundColor: '#FF7043',
-                color: 'white',
-                px: 3,
-                '&:hover': {
-                  backgroundColor: '#F4511E'
-                }
-              }}
-            >
-              Login / Register
-            </Button>
-          ) : (
-            <Button 
-              size="small" 
-              onClick={handleLogout} 
-              variant="outlined"
-              sx={{ 
-                color: 'white',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
-                textTransform: 'none',
-                fontWeight: 600,
-                '&:hover': { 
-                  borderColor: '#AEEA00',
-                  backgroundColor: 'rgba(174, 234, 0, 0.1)',
-                  color: '#AEEA00'
-                }
-              }}
-            >
-              Logout
-            </Button>
-          )}
-        </Box>
-      </Toolbar>
-    </AppBar>
-  );
-}
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
   const [token, setToken] = useState(localStorage.getItem('jwt') || "");
   const [cart, setCart] = useState([]);
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
 
-  const theme = createTheme({
+  const theme = useMemo(() => createTheme({
     palette: {
       mode: darkMode ? 'dark' : 'light',
       primary: { 
@@ -217,12 +56,12 @@ function App() {
         main: '#009688', // Teal for success
       },
       background: {
-        default: darkMode ? '#1B5E20' : '#F9F9F9', // Off White
-        paper: darkMode ? '#2E7D32' : '#FFFFFF'
+        default: darkMode ? '#09090B' : '#F8FAFC', // Clean neutral canvas (slate-50)
+        paper: darkMode ? '#18181B' : '#FFFFFF'
       },
       text: {
-        primary: darkMode ? '#E8F5E9' : '#333333', // Charcoal Gray
-        secondary: darkMode ? '#C8E6C9' : '#666666'
+        primary: darkMode ? '#F8FAFC' : '#0F172A', // Slate 900
+        secondary: darkMode ? '#94A3B8' : '#64748B' // Slate 500
       }
     },
     typography: { 
@@ -254,30 +93,44 @@ function App() {
         styleOverrides: {
           root: {
             borderRadius: 12,
-            border: '1px solid #E0E0E0'
+            border: darkMode ? '1px solid #27272A' : '1px solid #E0E0E0'
           }
         }
       },
       MuiPaper: {
         styleOverrides: {
           root: {
-            border: '1px solid #E0E0E0'
+            border: darkMode ? '1px solid #27272A' : '1px solid #E0E0E0'
           }
         }
       }
     }
-  });
+  }), [darkMode]);
+
+  // Sync dark class on <html> element and persist in localStorage
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('darkMode', darkMode ? 'true' : 'false');
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    localStorage.setItem('darkMode', !darkMode);
+    setDarkMode(prev => !prev);
+  };
+
+  const fetchProducts = () => {
+    setProductsLoading(true);
+    axios.get(API.products)
+      .then(res => setProducts(res.data))
+      .catch(err => console.error('Failed to fetch products:', err))
+      .finally(() => setProductsLoading(false));
   };
 
   useEffect(() => {
-    // ✅ UPDATED: Using API config instead of hardcoded URL
-    axios.get(API.products)
-      .then(res => setProducts(res.data))
-      .catch(err => console.error(err));
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -330,42 +183,63 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <NavTabs 
-          token={token} 
-          setToken={setToken} 
-          darkMode={darkMode} 
-          toggleDarkMode={toggleDarkMode}
-          onLoginClick={() => setLoginDialogOpen(true)}
-        />
-        
-        <Dialog 
-          open={loginDialogOpen} 
-          onClose={() => setLoginDialogOpen(false)}
-          maxWidth="sm"
-          fullWidth
-        >
-          <DialogTitle sx={{ fontWeight: 700, color: '#2E7D32' }}>
-            Login / Register
-          </DialogTitle>
-          <DialogContent>
-            <AuthForms setToken={handleLoginSuccess} />
-          </DialogContent>
-        </Dialog>
+        <div className={`min-h-screen bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 flex flex-col transition-colors ${darkMode ? 'dark' : ''}`}>
+          <Navbar 
+            token={token} 
+            setToken={setToken} 
+            darkMode={darkMode} 
+            toggleDarkMode={toggleDarkMode}
+            onLoginClick={() => setLoginDialogOpen(true)}
+            cartCount={cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
+          />
+          
+          <Dialog 
+            open={loginDialogOpen} 
+            onClose={() => setLoginDialogOpen(false)}
+            maxWidth="sm"
+            fullWidth
+          >
+            <DialogTitle sx={{ fontWeight: 700, color: '#16A34A' }}>
+              Login / Register
+            </DialogTitle>
+            <DialogContent>
+              <AuthForms setToken={handleLoginSuccess} />
+            </DialogContent>
+          </Dialog>
 
-        {/* ✅ NEW: Health Check Component */}
-        <HealthCheck />
+          <main className="w-full flex-1">
+            <Routes>
+              <Route path="/" element={<ProductList products={products} isLoading={productsLoading} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route path="/product/:id" element={<ProductDetail addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route path="/profile" element={token ? <Profile token={token} /> : <ProductList products={products} isLoading={productsLoading} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route path="/orders" element={token ? <Orders token={token} /> : <ProductList products={products} isLoading={productsLoading} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route path="/wishlist" element={token ? <Wishlist addToCart={addToCart} /> : <ProductList products={products} isLoading={productsLoading} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route
+                path="/add-product"
+                element={
+                  token ? (
+                    <AddProductForm token={token} onProductAdded={fetchProducts} />
+                  ) : (
+                    <ProductList
+                      products={products}
+                      isLoading={productsLoading}
+                      addToCart={addToCart}
+                      token={token}
+                      onLoginRequired={() => setLoginDialogOpen(true)}
+                    />
+                  )
+                }
+              />
+              <Route path="/cart" element={token ? <Cart cart={cart} setCart={setCart} onCheckout={handleCheckout} /> : <ProductList products={products} isLoading={productsLoading} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
+              <Route path="/verify-email" element={<VerifyEmail onOpenLogin={() => setLoginDialogOpen(true)} />} />
+              <Route path="/register" element={<RegisterPage setToken={handleLoginSuccess} />} />
+            </Routes>
 
-        <Box sx={{ width: '100%', px: 3, py: 4 }}>
-          <Routes>
-            <Route path="/" element={<ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/product/:id" element={<ProductDetail addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/profile" element={token ? <Profile token={token} /> : <ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/orders" element={token ? <Orders token={token} /> : <ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/wishlist" element={token ? <Wishlist addToCart={addToCart} /> : <ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/add-product" element={token ? <AddProductForm token={token} /> : <ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-            <Route path="/cart" element={token ? <Cart cart={cart} setCart={setCart} onCheckout={handleCheckout} /> : <ProductList products={products} addToCart={addToCart} token={token} onLoginRequired={() => setLoginDialogOpen(true)} />} />
-          </Routes>
-        </Box>
+          </main>
+
+          {/* 🤖 Floating AI Shopping Assistant */}
+          <AiAssistant />
+        </div>
       </Router>
     </ThemeProvider>
   );

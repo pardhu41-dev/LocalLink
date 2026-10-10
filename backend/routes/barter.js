@@ -15,7 +15,7 @@ router.post('/offer', auth, async (req, res) => {
     }
 
     const offeredProduct = await Product.findById(offeredProductId);
-    if (!offeredProduct || offeredProduct.seller.toString() !== req.user.id) {
+    if (!offeredProduct || !offeredProduct.seller || offeredProduct.seller.toString() !== req.user.id) {
       return res.status(400).json({ msg: 'Invalid offered product' });
     }
 

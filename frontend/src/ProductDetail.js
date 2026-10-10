@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { API, API_BASE_URL } from "./config";
 import {
   Box,
   Typography,
@@ -10,10 +11,11 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  Fade,
+  Fade
 } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import PaymentModal from './components/PaymentModal';
 
 function parseJwt(token) {
   if (!token) return null;
@@ -28,13 +30,15 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [paymentOpen, setPaymentOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState({});
   const userId = parseJwt(token)?.userId;
 
   const fetchProductData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5001/api/products/${id}`);
+      const { data } = await axios.get(API.product(id));
       setProduct(data);
       setForm({
         name: data.name,
@@ -50,9 +54,9 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
   };
 
   useEffect(() => {
-  fetchProductData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+    fetchProductData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   const handleEdit = () => setEditMode(true);
@@ -60,7 +64,7 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5001/api/products/${id}`, form, {
+      await axios.put(API.product(id), form, {
         headers: { Authorization: "Bearer " + token },
       });
       alert("Product updated");
@@ -74,7 +78,7 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
   const handleDelete = async () => {
     if (!window.confirm("Delete this product?")) return;
     try {
-      await axios.delete(`http://localhost:5001/api/products/${id}`, {
+      await axios.delete(API.product(id), {
         headers: { Authorization: "Bearer " + token },
       });
       alert("Product deleted");
@@ -112,16 +116,51 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
     );
   }
 
+  const resolveImg = (src) => {
+    if (!src) return '';
+    return src.startsWith('/uploads/') ? `${API_BASE_URL || ''}${src}` : src;
+  };
+
+  const rawImages = (product.images && product.images.length > 0)
+    ? product.images
+    : (product.imageUrl ? [product.imageUrl] : []);
+  const allImages = rawImages.map(resolveImg);
+  const currentImage = allImages[activeImageIndex] || resolveImg(product.imageUrl) || '';
+
   return (
     <Box sx={{ maxWidth: 800, mx: "auto", my: 4 }}>
       <Card sx={{ borderRadius: 3, overflow: 'hidden' }}>
         <CardMedia 
           component="img" 
           height="400" 
-          image={product.imageUrl} 
+          image={currentImage} 
           alt={product.name}
-          sx={{ objectFit: 'cover' }}
+          sx={{ objectFit: 'cover', maxHeight: 420 }}
         />
+        {allImages.length > 1 && (
+          <Box sx={{ display: 'flex', gap: 1.5, p: 2, bgcolor: 'background.paper', overflowX: 'auto', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
+            {allImages.map((img, idx) => (
+              <Box
+                key={idx}
+                component="img"
+                src={img}
+                alt={`${product.name} thumbnail ${idx + 1}`}
+                onClick={() => setActiveImageIndex(idx)}
+                sx={{
+                  width: 72,
+                  height: 54,
+                  objectFit: 'cover',
+                  borderRadius: 1.5,
+                  cursor: 'pointer',
+                  border: activeImageIndex === idx ? '2px solid #2E7D32' : '1px solid rgba(0,0,0,0.15)',
+                  opacity: activeImageIndex === idx ? 1 : 0.7,
+                  transition: 'all 0.2s',
+                  '&:hover': { opacity: 1 }
+                }}
+              />
+            ))}
+          </Box>
+        )}
         <CardContent sx={{ p: 3 }}>
           <Typography variant="h4" fontWeight={700} gutterBottom>
             {product.name}
@@ -142,8 +181,8 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
           </Box>
         </CardContent>
 
-        <CardActions sx={{ px: 3, pb: 3, gap: 1, flexWrap: 'wrap' }}>
-          {token && product.seller._id === userId ? (
+        <CardActions sx={{ px: 3, pb: 3, gap: 1.5, flexWrap: 'wrap' }}>
+          {token && product.seller && product.seller._id === userId ? (
             <>
               <Button 
                 variant="contained" 
@@ -163,19 +202,65 @@ const ProductDetail = ({ addToCart, token, onLoginRequired }) => {
               </Button>
             </>
           ) : (
-            <Button 
-              variant="contained" 
-              onClick={() => addToCart(product)}
-              sx={{ 
-                bgcolor: '#FF7043',
-                '&:hover': { bgcolor: '#F4511E' }
-              }}
-            >
-              Add to Cart
-            </Button>
+            <>
+              {/* 💬 Direct WhatsApp Chat */}
+              <Button 
+                variant="contained" 
+                onClick={() => {
+                  const phone = (product.sellerPhone || product.seller?.phone || '9876543210').replace(/\D/g, '').slice(-10);
+                  const title = product.title || product.name || 'Local Marketplace Item';
+                  const price = product.price || 0;
+                  const waUrl = `https://wa.me/91${phone}?text=${encodeURIComponent('Hi, I am interested in buying "' + title + '" listed on LocalMarket for ₹' + price)}`;
+                  window.open(waUrl, '_blank', 'noopener,noreferrer');
+                }}
+                sx={{ 
+                  bgcolor: '#25D366',
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  '&:hover': { bgcolor: '#1EBE5D' }
+                }}
+              >
+                Chat on WhatsApp
+              </Button>
+
+              {/* ⚡ Zero-Fee UPI Payment QR */}
+              <Button 
+                variant="contained" 
+                onClick={() => setPaymentOpen(true)}
+                sx={{ 
+                  bgcolor: '#16A34A',
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  '&:hover': { bgcolor: '#15803D' }
+                }}
+              >
+                Pay via UPI QR (Zero Fee)
+              </Button>
+
+              {/* 🛒 Add to Cart */}
+              <Button 
+                variant="outlined" 
+                onClick={() => addToCart(product)}
+                sx={{ 
+                  borderColor: '#FF7043',
+                  color: '#FF7043',
+                  fontWeight: 600,
+                  '&:hover': { bgcolor: 'rgba(255, 112, 67, 0.08)', borderColor: '#F4511E' }
+                }}
+              >
+                Add to Cart
+              </Button>
+            </>
           )}
         </CardActions>
       </Card>
+
+      {/* ── Zero-Fee UPI Payment Modal ── */}
+      <PaymentModal
+        isOpen={paymentOpen}
+        onClose={() => setPaymentOpen(false)}
+        item={product}
+      />
     </Box>
   );
 };

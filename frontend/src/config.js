@@ -5,14 +5,23 @@ export const API_BASE_URL = window.location.hostname === 'localhost'
 
 // Helper function for API endpoints
 export const API = {
-  // Products
+  // Products & Listings
   products: `${API_BASE_URL}/api/products`,
   product: (id) => `${API_BASE_URL}/api/products/${id}`,
+  listings: `${API_BASE_URL}/api/listings`,
   
-  // Users
+  // Users & Auth
   register: `${API_BASE_URL}/api/users/register`,
   login: `${API_BASE_URL}/api/users/login`,
   profile: `${API_BASE_URL}/api/users/profile`,
+  verifyEmail: (token) => `${API_BASE_URL}/api/users/verify-email?token=${token}`,
+  resendVerification: `${API_BASE_URL}/api/users/resend-verification`,
+  sendRegistrationOtp: `${API_BASE_URL}/api/auth/send-registration-otp`,
+  verifyRegistrationOtp: `${API_BASE_URL}/api/auth/verify-registration-otp`,
+  resendRegistrationOtp: `${API_BASE_URL}/api/auth/resend-registration-otp`,
+  forgotPassword: `${API_BASE_URL}/api/auth/forgot-password`,
+  verifyResetOtp: `${API_BASE_URL}/api/auth/verify-reset-otp`,
+  resetPassword: `${API_BASE_URL}/api/auth/reset-password`,
   
   // Orders
   orders: `${API_BASE_URL}/api/orders`,
@@ -39,6 +48,9 @@ export const API = {
   // Analytics
   analytics: `${API_BASE_URL}/api/analytics/dashboard`,
   
+  // AI Assistant
+  aiRecommend: `${API_BASE_URL}/api/ai/recommend`,
+
   // Health Check
   health: `${API_BASE_URL}/api/health`
 };

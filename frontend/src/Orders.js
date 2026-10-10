@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API } from './config';
 import { 
   Box, Typography, Card, CardContent, Chip, Stepper, Step, StepLabel, 
   Accordion, AccordionSummary, AccordionDetails 
@@ -17,7 +18,7 @@ const Orders = ({ token }) => {
       return;
     }
 
-    axios.get('http://localhost:5001/api/orders', {
+    axios.get(API.orders, {
       headers: { Authorization: 'Bearer ' + token }
     })
     .then(res => setOrders(res.data))

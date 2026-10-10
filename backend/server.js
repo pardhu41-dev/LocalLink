@@ -41,16 +41,30 @@ app.get('/api/health', (req, res) => {
 // ============================================
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-})
+if (!process.env.MONGODB_URI) {
+  console.error('FATAL: MONGODB_URI not set in .env');
+  process.exit(1);
+}
+
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
+
+const path = require('path');
+
+// Serve uploaded product photos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+app.use('/api/auth', require('./routes/users'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/products', require('./routes/products'));
+app.use('/api/listings', require('./routes/listings'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/events', require('./routes/events'));
 app.use('/api/messages', require('./routes/messages'));
@@ -58,6 +72,18 @@ app.use('/api/sharing', require('./routes/sharing'));
 app.use('/api/chat', require('./routes/chat'));
 app.use('/api/barter', require('./routes/barter'));
 app.use('/api/analytics', require('./routes/analytics'));
+app.use('/api/ai', require('./routes/ai'));
+
+// Global error handling middleware (handles multer file errors, json parse errors, etc.)
+app.use((err, req, res, next) => {
+  console.error('Unhandled server error:', err);
+  if (err.name === 'MulterError') {
+    return res.status(400).json({ msg: `Upload error: ${err.message}` });
+  }
+  return res.status(err.status || 500).json({
+    msg: err.message || 'An internal server error occurred'
+  });
+});
 
 // Socket.io real-time chat
 io.on('connection', (socket) => {

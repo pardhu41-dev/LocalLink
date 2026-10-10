@@ -10,7 +10,7 @@ router.post('/', authMiddleware, async (req, res) => {
     if (!content) return res.status(400).json({ msg: "Content required" });
 
     const message = new Message({
-      sender: req.user.userId,
+      sender: req.user.id,
       content,
       listingId,
     });
@@ -25,7 +25,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Get messages (optionally filtered by listingId)
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
   try {
     const { listingId } = req.query;
     let filter = {};

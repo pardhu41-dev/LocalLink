@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API } from './config';
 import {
   Box,
   Typography,
@@ -35,7 +36,7 @@ const Profile = ({ token }) => {
       return;
     }
 
-    axios.get('http://localhost:5001/api/users/profile', {
+    axios.get(API.profile, {
       headers: { Authorization: 'Bearer ' + token }
     })
     .then(res => {
@@ -70,13 +71,13 @@ const Profile = ({ token }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:5001/api/users/profile', form, {
+      await axios.put(API.profile, form, {
         headers: { Authorization: 'Bearer ' + token }
       });
       alert('Profile updated!');
       setEditMode(false);
       // Refresh user data
-      const res = await axios.get('http://localhost:5001/api/users/profile', {
+      const res = await axios.get(API.profile, {
         headers: { Authorization: 'Bearer ' + token }
       });
       setUser(res.data);

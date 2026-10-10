@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
   products: [
     {
       product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-      quantity: Number
+      quantity: { type: Number, default: 1 }
     }
   ],
   total: { type: Number, required: true },
@@ -22,5 +22,9 @@ const orderSchema = new mongoose.Schema({
     }
   ]
 }, { timestamps: true });
+
+// Indexes for common query patterns
+orderSchema.index({ user: 1, createdAt: -1 });
+orderSchema.index({ 'products.product': 1 }); // for seller analytics lookups
 
 module.exports = mongoose.model('Order', orderSchema);

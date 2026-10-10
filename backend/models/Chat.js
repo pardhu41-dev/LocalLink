@@ -40,4 +40,9 @@ const chatSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+// Unique index prevents duplicate chats (also used by upsert in routes/chat.js)
+chatSchema.index({ product: 1, buyer: 1, seller: 1 }, { unique: true });
+// For sorting the chat list by most recent activity
+chatSchema.index({ lastMessage: -1 });
+
 module.exports = mongoose.model('Chat', chatSchema);

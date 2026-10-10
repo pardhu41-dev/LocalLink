@@ -14,8 +14,8 @@ router.post('/', authMiddleware, async (req, res) => {
       title,
       description,
       date,
-      createdBy: req.user.userId,
-      participants: [req.user.userId]
+      createdBy: req.user.id,
+      participants: [req.user.id]
     });
     await event.save();
     res.json(event);
@@ -39,8 +39,8 @@ router.post('/:id/join', authMiddleware, async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
     if (!event) return res.status(404).json({ msg: 'Event not found' });
-    if (!event.participants.includes(req.user.userId)) {
-      event.participants.push(req.user.userId);
+    if (!event.participants.includes(req.user.id)) {
+      event.participants.push(req.user.id);
       await event.save();
     }
     res.json(event);

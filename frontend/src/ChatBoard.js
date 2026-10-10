@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Box, List, ListItem, ListItemText, TextField, Button, Typography, Paper } from '@mui/material';
+import { API } from './config';
 
 const ChatBoard = ({ listingId, token }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [sending, setSending] = useState(false);
+  const listRef = useRef(null);
 
   const fetchMessages = async () => {
     try {
-      const url = listingId 
-        ? `http://localhost:5001/api/messages?listingId=${listingId}` 
-        : 'http://localhost:5001/api/messages';
-      const res = await axios.get(url);
+      const url = listingId
+        ? `${API.messages}?listingId=${listingId}`
+        : API.messages;
+      const res = await axios.get(url, {
+        headers: token ? { Authorization: 'Bearer ' + token } : {}
+      });
       setMessages(res.data);
     } catch {
       console.error('Failed to load messages');
@@ -19,22 +24,33 @@ const ChatBoard = ({ listingId, token }) => {
   };
 
   useEffect(() => {
-  fetchMessages();
-  const interval = setInterval(fetchMessages, 5000);
-  return () => clearInterval(interval);
-}, [listingId]); // Add fetchMessages here if needed
+    fetchMessages();
+    const interval = setInterval(fetchMessages, 5000);
+    return () => clearInterval(interval);
+  }, [listingId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Auto-scroll to latest message
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const sendMessage = async () => {
+    if (!input.trim() || sending) return;
+    setSending(true);
     try {
-      if (!input.trim()) return;
-      await axios.post('http://localhost:5001/api/messages', 
-        { content: input, listingId }, 
+      await axios.post(
+        API.messages,
+        { content: input, listingId },
         { headers: { Authorization: 'Bearer ' + token } }
       );
       setInput('');
-      fetchMessages();
+      await fetchMessages(); // refresh after send
     } catch {
       alert('Failed to send message');
+    } finally {
+      setSending(false);
     }
   };
 
@@ -49,12 +65,15 @@ const ChatBoard = ({ listingId, token }) => {
     <Box sx={{ maxWidth: 800, mx: 'auto', my: 4 }}>
       <Typography variant="h5" mb={2}>Community Chat</Typography>
       <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
-        <List sx={{ 
-          height: 400, 
-          overflowY: 'auto', 
-          mb: 2,
-          bgcolor: 'background.paper'
-        }}>
+        <List
+          ref={listRef}
+          sx={{
+            height: 400,
+            overflowY: 'auto',
+            mb: 2,
+            bgcolor: 'background.paper'
+          }}
+        >
           {messages.length === 0 ? (
             <Typography color="text.secondary" align="center" mt={3}>
               No messages yet. Start the conversation!
@@ -65,7 +84,7 @@ const ChatBoard = ({ listingId, token }) => {
                 <ListItemText
                   primary={
                     <Typography variant="subtitle2" color="primary">
-                      {msg.sender.name}
+                      {msg.sender?.name || 'Unknown'}
                     </Typography>
                   }
                   secondary={
@@ -92,12 +111,12 @@ const ChatBoard = ({ listingId, token }) => {
             onKeyPress={handleKeyPress}
             disabled={!token}
           />
-          <Button 
-            variant="contained" 
+          <Button
+            variant="contained"
             onClick={sendMessage}
-            disabled={!token || !input.trim()}
+            disabled={!token || !input.trim() || sending}
           >
-            Send
+            {sending ? 'Sending...' : 'Send'}
           </Button>
         </Box>
         {!token && (

@@ -7,26 +7,15 @@ const auth = require('../middleware/auth');
 router.post('/start', auth, async (req, res) => {
   try {
     const { productId, sellerId } = req.body;
-    
-    let chat = await Chat.findOne({
-      product: productId,
-      buyer: req.user.id,
-      seller: sellerId
-    })
+
+    // findOneAndUpdate with upsert prevents race condition from double-click / concurrent requests
+    let chat = await Chat.findOneAndUpdate(
+      { product: productId, buyer: req.user.id, seller: sellerId },
+      { $setOnInsert: { product: productId, buyer: req.user.id, seller: sellerId, messages: [] } },
+      { new: true, upsert: true }
+    )
     .populate('messages.sender', 'name')
     .populate('product', 'name imageUrl');
-
-    if (!chat) {
-      chat = new Chat({
-        product: productId,
-        buyer: req.user.id,
-        seller: sellerId,
-        messages: []
-      });
-      await chat.save();
-      await chat.populate('messages.sender', 'name');
-      await chat.populate('product', 'name imageUrl');
-    }
 
     res.json(chat);
   } catch (err) {
@@ -71,7 +60,7 @@ router.get('/my-chats', auth, async (req, res) => {
     .populate('product', 'name imageUrl price')
     .populate('buyer', 'name email')
     .populate('seller', 'name email')
-    .populate('messages.sender', 'name')
+    .select('-messages') // Exclude message history from list — fetch only when opening a chat
     .sort({ lastMessage: -1 });
 
     res.json(chats);
