@@ -4,8 +4,6 @@ const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 require('dotenv').config();
-const cors = require('cors');
-
 const allowedOrigins = [
   'https://local-link-beta.vercel.app',
   process.env.APP_URL,
