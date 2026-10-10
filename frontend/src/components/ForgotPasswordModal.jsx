@@ -111,6 +111,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onSwitchToLogin }
       const res = await fetch(FORGOT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email: email.trim() })
       });
       const data = await res.json();
@@ -173,6 +174,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onSwitchToLogin }
       const res = await fetch(VERIFY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email: email.trim(), otp: fullCode })
       });
       const data = await res.json();
@@ -200,6 +202,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onSwitchToLogin }
       const res = await fetch(FORGOT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email: email.trim() })
       });
       const data = await res.json();
@@ -240,6 +243,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onSwitchToLogin }
       const res = await fetch(RESET_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email: email.trim(), newPassword })
       });
       const data = await res.json();

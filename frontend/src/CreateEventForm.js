@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Box, Typography } from '@mui/material';
+import { API } from './config';
 
 const CreateEventForm = () => {
   const [form, setForm] = useState({ title: '', description: '', date: '' });
@@ -10,7 +11,7 @@ const CreateEventForm = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/events', form, {
+      await axios.post(API.events, form, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('jwt') },
       });
       alert('Event created!');

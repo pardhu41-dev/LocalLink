@@ -1,7 +1,24 @@
+import axios from 'axios';
+
+// Ensure withCredentials is enabled consistently across axios requests
+axios.defaults.withCredentials = true;
+
 // API Configuration
-export const API_BASE_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:5001' 
-  : 'https://locallink-dhzn.onrender.com';
+const getBaseUrl = () => {
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ) {
+    return 'http://localhost:5001';
+  }
+  return 'https://locallink-1.onrender.com';
+};
+
+// Strictly remove any trailing slashes to prevent double slashes when appending endpoints
+export const API_BASE_URL = getBaseUrl().replace(/\/+$/, '');
 
 // Helper function for API endpoints
 export const API = {
@@ -30,6 +47,7 @@ export const API = {
   // Events
   events: `${API_BASE_URL}/api/events`,
   event: (id) => `${API_BASE_URL}/api/events/${id}`,
+  joinEvent: (id) => `${API_BASE_URL}/api/events/${id}/join`,
   
   // Messages
   messages: `${API_BASE_URL}/api/messages`,
@@ -54,3 +72,5 @@ export const API = {
   // Health Check
   health: `${API_BASE_URL}/api/health`
 };
+
+export default API;

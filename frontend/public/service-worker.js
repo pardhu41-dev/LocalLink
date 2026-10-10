@@ -40,13 +40,21 @@ self.addEventListener('activate', (event) => {
 
 // Fetch: Network-first for dynamic content/APIs, cache-fallback for UI shell
 self.addEventListener('fetch', (event) => {
+  // Explicitly exclude all API calls and cross-origin backend calls so the browser
+  // handles them natively over the network without caching or PWA synthetic fetch failures.
+  if (
+    event.request.url.includes('/api/') ||
+    event.request.url.includes('onrender.com') ||
+    event.request.method !== 'GET'
+  ) {
+    return;
+  }
+
   const { request } = event;
   const url = new URL(request.url);
 
-  // Bypass non-GET requests and WebSocket / Socket.io / API endpoints
+  // Bypass WebSocket / Socket.io endpoints
   if (
-    request.method !== 'GET' ||
-    url.pathname.startsWith('/api/') ||
     url.pathname.startsWith('/socket.io/') ||
     url.protocol.startsWith('ws')
   ) {

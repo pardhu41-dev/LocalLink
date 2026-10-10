@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, CardContent, Typography, Button, Grid } from '@mui/material';
+import { API } from './config';
 
 const EventsList = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/events')
+    axios.get(API.events)
       .then(res => setEvents(res.data))
       .catch(() => alert('Failed to load events'));
   }, []);
 
   const handleJoin = async (id) => {
     try {
-      await axios.post(`http://localhost:5001/api/events/${id}/join`, {}, {
+      await axios.post(API.joinEvent ? API.joinEvent(id) : `${API.events}/${id}/join`, {}, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('jwt') },
       });
       alert('Joined event!');
