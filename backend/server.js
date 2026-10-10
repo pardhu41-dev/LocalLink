@@ -2,16 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const http = require('http');
+const path = require('path');
 const { Server } = require('socket.io');
 require('dotenv').config();
+
+// 1. Initialize Express App and HTTP Server FIRST
+const app = express();
+const server = http.createServer(app);
+
+// 2. Define Allowed Origins for Production and Development
 const allowedOrigins = [
   'https://local-link-beta.vercel.app',
   process.env.APP_URL,
+  process.env.FRONTEND_URL,
   'http://localhost:5173',
   'http://localhost:3000'
 ].filter(Boolean);
 
-app.use(cors({
+const corsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, curl, or server-to-server)
     if (!origin) return callback(null, true);
@@ -22,31 +30,28 @@ app.use(cors({
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
-const app = express();
-const server = http.createServer(app);
+};
 
-// Socket.io setup
-// Update Socket.io setup
+// 3. Attach Middlewares
+app.use(cors(corsOptions));
+app.use(express.json());
+
+// 4. Socket.io Setup with Unified CORS
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Use Env Var
-    methods: ['GET', 'POST']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
-// Update Middleware
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Use Env Var
-  credentials: true
-}));
-app.use(express.json());
+// Root & Health Check Endpoints
+app.get('/', (req, res) => {
+  res.send('LocalLink Backend API is running!');
+});
 
-// ============================================
-// HEALTH CHECK ENDPOINT (ADD THIS)
-// ============================================
 app.get('/api/health', (req, res) => {
   const healthData = {
     status: 'ok',
@@ -58,9 +63,8 @@ app.get('/api/health', (req, res) => {
   };
   res.json(healthData);
 });
-// ============================================
 
-// MongoDB connection
+// MongoDB Connection
 if (!process.env.MONGODB_URI) {
   console.error('FATAL: MONGODB_URI not set in .env');
   process.exit(1);
@@ -73,9 +77,7 @@ mongoose.connect(process.env.MONGODB_URI)
     process.exit(1);
   });
 
-const path = require('path');
-
-// Serve uploaded product photos
+// Serve Uploaded Files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
@@ -94,7 +96,7 @@ app.use('/api/barter', require('./routes/barter'));
 app.use('/api/analytics', require('./routes/analytics'));
 app.use('/api/ai', require('./routes/ai'));
 
-// Global error handling middleware (handles multer file errors, json parse errors, etc.)
+// Global Error Handler
 app.use((err, req, res, next) => {
   console.error('Unhandled server error:', err);
   if (err.name === 'MulterError') {
@@ -105,7 +107,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Socket.io real-time chat
+// Socket.io Real-Time Chat
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
@@ -127,6 +129,6 @@ io.on('connection', (socket) => {
   });
 });
 
-// Start server
+// Start Server
 const PORT = process.env.PORT || 5001;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
